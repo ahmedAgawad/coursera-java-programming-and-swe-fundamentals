@@ -20,8 +20,8 @@ public class Part1 {
     }
     
     
-    public String findGene(String dna) {
-        int startIndex = dna.indexOf("ATG");
+    public String findGene(String dna, int where) {
+        int startIndex = dna.indexOf("ATG", where);
         
         if(startIndex == -1) {
           return "";
@@ -31,20 +31,37 @@ public class Part1 {
         int tagIndex = findStopCodon(dna, startIndex, "TAG"); 
         int tgaIndex = findStopCodon(dna, startIndex, "TGA");
         
-        int stopIndex = 0;
+        int minIndex = 0;
         
-        stopIndex = Math.min(taaIndex, Math.min(tagIndex, tgaIndex));
-        if(stopIndex == dna.length()) {
+        if(taaIndex == -1 || (tgaIndex != -1 && tgaIndex < taaIndex) ) {
+            minIndex = tgaIndex;
+        } else {
+            minIndex = taaIndex;
+        }
+        
+        if(minIndex == -1 || (tagIndex != -1 && tagIndex < minIndex)) {
+          minIndex = tagIndex;
+        }
+        
+        if(minIndex == -1) {
           return "";
         }
         
-        return dna.substring(startIndex, stopIndex+3);
+        return dna.substring(startIndex, minIndex+3);
     }
     
     
     public void printAllGenes(String dna) {
-     
-    
+         int startIndex = 0;
+         while(true) {
+              String currentGene = findGene(dna, startIndex);  
+              if(currentGene.isEmpty()) {
+                  break;
+              }
+              System.out.println(currentGene);
+              startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
+         }
+         
     }
     
     public void testFindStop() {
@@ -61,12 +78,16 @@ public class Part1 {
     
     public void testFindGene() {
       String dna = "ATGABCDEFTAATGA";
-      System.out.println(findGene(dna));
+      System.out.println(findGene(dna, 0));
     
       dna = "ABATGDEFGJKJ";
-      System.out.println(findGene(dna));
+      System.out.println(findGene(dna, 0));
       
       dna = "ATGABCDTAAEFTGA";
-      System.out.println(findGene(dna));
+      System.out.println(findGene(dna,0));
+    }
+    
+    public void testPrintAllGenes() {
+       printAllGenes("ATGATCTAATTTATGCTGCAACGGTGAAGA");
     }
 }
