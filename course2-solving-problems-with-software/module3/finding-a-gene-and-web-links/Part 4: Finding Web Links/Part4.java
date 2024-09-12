@@ -19,4 +19,9 @@ public void webLinks() {
     } 
   }
 }
+
+
+public void testWebLinks() {
+  webLinks();
+}
 }

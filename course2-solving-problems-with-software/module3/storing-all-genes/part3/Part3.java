@@ -105,7 +105,7 @@ public class Part3 {
     }
     
     public void testProcessGenes() {
-        FileResource fr = new FileResource("brca1line.fa");
+        FileResource fr = new FileResource("GRch38dnapart.fa");
         String dna = fr.asString();
         
         StorageResource geneList = getAllGenes(dna);
