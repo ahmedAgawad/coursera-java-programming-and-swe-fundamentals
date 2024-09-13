@@ -55,16 +55,16 @@ public class csvCountries {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
         
-        //parser = fr.getCSVParser();
-        System.out.println(countryInfo(parser, "Germany"));
+        parser = fr.getCSVParser();
+       // System.out.println(countryInfo(parser, "Nauru"));
         
         parser = fr.getCSVParser();
-        listExportersTwoProducts(parser, "gold", "diamonds");
+       // listExportersTwoProducts(parser, "fish", "nuts");
         
         parser = fr.getCSVParser();
-        System.out.println(numberOfExporters(parser, "gold"));
+        //System.out.println(numberOfExporters(parser, "gold"));
         
         parser = fr.getCSVParser();
-        bigExporters(parser,"$999,999,999");
+         bigExporters(parser,"$999,999,999,999");
     }
 }
