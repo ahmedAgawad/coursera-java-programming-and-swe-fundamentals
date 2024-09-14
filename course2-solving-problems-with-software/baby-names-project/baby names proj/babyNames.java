@@ -127,6 +127,53 @@ whatIsNameInYear("Isabella", 2012, 2014, "F");
 }
 
 
+public int singleYearNameRank(FileResource fr, String name, String gender) {
+    int boysCount = 0;
+    int girlsCount = 0;
+    for(CSVRecord rec : fr.getCSVParser(false)) {
+        
+        if(rec.get(1).equals("M")) {
+            boysCount++;
+        } else {
+            girlsCount++;
+        }
+        
+        if(rec.get(0).equals(name) && rec.get(1).equals(gender)) {
+            if(rec.get(1).equals("M")) {
+                return boysCount;
+            } else {
+                return girlsCount;
+            }
+        }    
+    }
+    return -1;
+
+}
+
+
+public int yearOfHighestRank(String name, String gender) {
+  int highestRank = 99999;
+  File highestRankFile = null;
+  DirectoryResource dr = new DirectoryResource();
+  
+  for(File f: dr.selectedFiles()) {
+    FileResource fr = new FileResource(f);
+    int currentYearRank = singleYearNameRank(fr, name, gender);
+    if(currentYearRank < highestRank) {
+        highestRank = currentYearRank;
+        highestRankFile = f;
+    } 
+  }
+
+  String yearAsString = (highestRankFile.getName()).substring(3,7);
+  return Integer.parseInt(yearAsString);
+} 
+
+
+public void testYearOfHigestRank() {
+    System.out.println(yearOfHighestRank("Mason", "M"));
+}
+
 
 
 }
