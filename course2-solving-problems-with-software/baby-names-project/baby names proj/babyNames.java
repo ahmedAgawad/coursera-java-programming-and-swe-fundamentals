@@ -75,7 +75,7 @@ public int getRank(int year, String name, String gender) {
 
 
 public void testGetRank() {
-    System.out.println(getRank(2014, "Liam", "M"));
+    System.out.println(getRank(2012, "Isabella", "F"));
 }
 
 public String getName(int year, int rank, String gender) {
@@ -111,5 +111,22 @@ public String getName(int year, int rank, String gender) {
 public void testGetName() {
     System.out.println(getName(2013, 5, "F"));
 }
+
+public void whatIsNameInYear(String name, int year, int newYear, String gender) {
+    int oldNameRank = getRank(year, name, gender);
+    
+    String newYearName = getName(newYear, oldNameRank, gender);
+    
+    System.out.println(name + " born in " + year + " would be " + newYearName + " if born in " + newYear);
+    System.out.println(oldNameRank);
+}
+
+
+public void testWhatIsNameInYear() {
+whatIsNameInYear("Isabella", 2012, 2014, "F");
+}
+
+
+
 
 }
