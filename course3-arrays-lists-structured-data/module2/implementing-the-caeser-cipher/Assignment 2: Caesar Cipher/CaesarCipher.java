@@ -68,12 +68,12 @@ public String encryptTwoKeys(String input, int key1, int key2) {
 
 // methods testing
 public void testEncrypt() {
-    System.out.println(encrypt("First Legion", 17));
+    System.out.println(encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 17));
 }
 
 public void testEncryptTwoKeys() {
 
-System.out.println(encryptTwoKeys("First Legion", 23, 17));
+System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
 }
 
 
