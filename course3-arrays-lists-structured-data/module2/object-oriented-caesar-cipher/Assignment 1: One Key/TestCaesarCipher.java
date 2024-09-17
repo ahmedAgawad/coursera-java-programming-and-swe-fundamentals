@@ -34,8 +34,9 @@ public class TestCaesarCipher {
      public void simpleTests() {
         FileResource fr = new FileResource();
         String message = fr.asString();
-        CaesarCipher cc = new CaesarCipher(18);
-		
+        CaesarCipher cc = new CaesarCipher(15);
+        message = "Can you imagine life WITHOUT the internet AND computers in your pocket?";
+        
         String encrypted = cc.encrypt(message);
         System.out.println("Encryption");
         System.out.println("==========");
@@ -63,7 +64,7 @@ public class TestCaesarCipher {
         }
         
         CaesarCipher cc = new CaesarCipher(dkey);
-		
+        
         return cc.decrypt(input);
     }
 }
