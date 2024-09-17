@@ -42,9 +42,9 @@ public class WordLengths {
         FileResource fr = new FileResource();
         int [] count = new int[31];
         countWordLengths(fr, count);
-        //for(int i = 0; i < count.length; i++) {
-          //  System.out.println("word of size " + i + " is repeated " + count[i]);
-        //}
+        for(int i = 0; i < count.length; i++) {
+          System.out.println("word of size " + i + " is repeated " + count[i]);
+        }
         System.out.println(indexOfMax(count));
     }
 }
