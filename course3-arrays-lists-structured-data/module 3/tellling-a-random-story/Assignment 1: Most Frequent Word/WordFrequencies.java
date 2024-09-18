@@ -62,5 +62,6 @@ public void tester() {
     int maxIndex = findIndexOfMax();
     
     System.out.println("The word that occurs most often and its count are: " + myWords.get(maxIndex) + " " + myFreqs.get(maxIndex));
+    System.out.println("Unique words num:  " + myWords.size() );
 }
 }
