@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=codonCount
+comment0.text=\n\ Write\ a\ description\ of\ codonCount\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=codonCount()
+comment2.params=start\ dna
+comment2.target=void\ bulidCodonMap(int,\ java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ getMostCommonCodon()
+comment4.params=start\ end
+comment4.target=void\ printCodonCounts(int,\ int)
+comment5.params=
+comment5.target=void\ tester()
+numComments=6
