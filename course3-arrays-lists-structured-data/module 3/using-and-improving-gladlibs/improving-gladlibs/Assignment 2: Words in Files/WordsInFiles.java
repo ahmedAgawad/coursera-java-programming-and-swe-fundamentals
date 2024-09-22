@@ -82,22 +82,8 @@ public void printFilesIn(String word) {
 
 public void tester() {
     buildWordFileMap();
-    int maxNum = maxNumber();
-    for(String keyName : wordsToFiles.keySet()) {
-        System.out.println(keyName);
-        ArrayList<String> fileNames = wordsToFiles.get(keyName);
-        for(int i = 0; i < fileNames.size(); i++) {
-            System.out.print(fileNames.get(i) + "  ");
-        }
-        System.out.println("\n");
-    }
-    System.out.println(maxNum);
-    ArrayList<String> wordsList = wordsInNumFiles(2);
-    for(int i =0; i < wordsList.size(); i++) {
-        System.out.print(wordsList.get(i) + " ");
-    }
-    System.out.println("\n");
-    printFilesIn("dogs");
-} 
+    printFilesIn("red");
+    
 
+}
 }
