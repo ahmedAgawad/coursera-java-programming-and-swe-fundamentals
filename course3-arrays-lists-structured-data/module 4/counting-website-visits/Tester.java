@@ -43,4 +43,25 @@ public class Tester
         la.readFile("weblog1_log");
         System.out.println(la.countUniqueIPsInRange(200, 299));
     }
+    
+    public void testCountVisitsPerIP() {
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog1_log");
+        HashMap<String, Integer> counts = la.countVisitsPerIP();
+        System.out.println(counts);
+        int maxNum = la.mostNumberVisitsByIp(counts);
+        System.out.println("MaxNum : " + maxNum);
+        ArrayList<String> list = la.iPsMostVisits(counts);
+        System.out.println("MostVisted : " + list);
+    }
+    
+    public void testIPsForDays() {
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog1_log");
+        HashMap<String, ArrayList<String>> dateToIps = la.iPsForDays();
+        System.out.println(dateToIps);
+        System.out.println("day with most : " + la.dayWithMostIpVisits(dateToIps));
+        ArrayList<String> testList = la.iPsWithMostVisitsOnDay(dateToIps, "Mar 17");
+        System.out.println("test list : " + testList);
+    }
 }
