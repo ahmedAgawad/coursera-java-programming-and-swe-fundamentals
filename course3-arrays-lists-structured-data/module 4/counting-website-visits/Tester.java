@@ -64,4 +64,11 @@ public class Tester
         ArrayList<String> testList = la.iPsWithMostVisitsOnDay(dateToIps, "Mar 17");
         System.out.println("test list : " + testList);
     }
+    
+    public void testForQuiz() {
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog2_log");
+        HashMap<String, ArrayList<String>> visits = la.iPsForDays();
+        System.out.println(la.iPsWithMostVisitsOnDay(visits, "Sep 29"));
+    }
 }
