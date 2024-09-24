@@ -41,4 +41,32 @@ public class Tester {
         System.out.println(decryptedTxt);
         
     }
+    
+    public void testVBsliceString() {
+        VigenereBreaker vb = new VigenereBreaker();
+        System.out.println(vb.sliceString("abcdefghijklm", 0, 3));
+        System.out.println(vb.sliceString("abcdefghijklm", 1, 3));
+        System.out.println(vb.sliceString("abcdefghijklm", 2, 3));
+        System.out.println(vb.sliceString("abcdefghijklm", 0, 4));
+        System.out.println(vb.sliceString("abcdefghijklm", 1, 4));
+        System.out.println(vb.sliceString("abcdefghijklm", 2, 4));
+        System.out.println(vb.sliceString("abcdefghijklm", 3, 4));
+        System.out.println(vb.sliceString("abcdefghijklm", 1, 5));
+        System.out.println(vb.sliceString("abcdefghijklm", 3, 5));
+    }
+    
+    public void testVBtryKeyLength() {
+        VigenereBreaker vb = new VigenereBreaker();
+        FileResource fr = new FileResource();
+        String txt = fr.asString();
+        int [] test = vb.tryKeyLength(txt, 5, 'e');
+        for(int i =0; i < test.length; i++) {
+            System.out.println(test[i]);
+        }
+    }
+    
+    public void testVB() {
+        VigenereBreaker vb = new VigenereBreaker();
+        vb.breakVigenere();
+    }
 }
