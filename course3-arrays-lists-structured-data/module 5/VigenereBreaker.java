@@ -20,12 +20,64 @@ public class VigenereBreaker {
         return key;
     }
 
+    
+    public HashSet<String> readDictionary(FileResource fr) {
+        HashSet<String> dictionary = new HashSet<String>();
+        for(String line : fr.lines()) {
+            dictionary.add(line.toLowerCase());
+        }
+        return dictionary;
+    }
+    
+    
+    public int countWords(String message, HashSet<String> dictionary) {
+        String [] words = message.split("\\W+");
+        int counter = 0;
+        
+        for(int i =0; i < words.length; i++) {
+            String currentWord = words[i].toLowerCase();
+            
+            if(dictionary.contains(currentWord)) {
+                counter++;
+            }
+        }
+        
+        
+        return counter;
+    }
+    
+    
+    public String breakForLanguage(String message, HashSet<String> dictionary) {
+        int max = -99999;
+        String correctDecrypted = "";
+        for(int i = 1; i <= 100; i++) {
+            int [] keys = tryKeyLength(message, i, 'e');
+            VigenereCipher vc = new VigenereCipher(keys);
+            String decrypted = vc.decrypt(message);
+            String [] words = decrypted.split("\\W+");
+            int correctWords = 0;
+            for(int j = 0; j < words.length; j++) {
+                if(dictionary.contains(words[j].toLowerCase())) {
+                    correctWords++;
+                }
+            }
+            
+            if(correctWords > max) {
+                max = correctWords;
+                correctDecrypted = decrypted;
+            }
+        }
+        
+        return correctDecrypted;
+    }
+    
     public void breakVigenere () {
         FileResource fr = new FileResource();
         String message = fr.asString();
-        int [] keys = tryKeyLength(message, 5 ,'e');
-        VigenereCipher vc = new VigenereCipher(keys);
-        String decrypted = vc.decrypt(message);
+        FileResource dicFile = new FileResource("dictionaries/English");
+        HashSet<String> dic = readDictionary(dicFile);
+        
+        String decrypted = breakForLanguage(message, dic);
         System.out.println(decrypted);
     }
     

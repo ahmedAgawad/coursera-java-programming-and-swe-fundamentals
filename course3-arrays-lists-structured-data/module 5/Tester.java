@@ -59,7 +59,7 @@ public class Tester {
         VigenereBreaker vb = new VigenereBreaker();
         FileResource fr = new FileResource();
         String txt = fr.asString();
-        int [] test = vb.tryKeyLength(txt, 5, 'e');
+        int [] test = vb.tryKeyLength(txt, 4, 'e');
         for(int i =0; i < test.length; i++) {
             System.out.println(test[i]);
         }
