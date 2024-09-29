@@ -33,6 +33,19 @@ public class EarthQuakeClient {
         return answer;
     }
 
+    
+    public ArrayList<QuakeEntry> filterByDepth(ArrayList<QuakeEntry> quakeData, double minDepth, double maxDepth) {
+        ArrayList<QuakeEntry> answer = new ArrayList<QuakeEntry>();
+        
+        for(QuakeEntry qe : quakeData) {
+            if(qe.getDepth() > minDepth && qe.getDepth() < maxDepth) {
+                answer.add(qe);
+            }
+        }
+        
+        return answer;
+    }
+    
     public void dumpCSV(ArrayList<QuakeEntry> list){
         System.out.println("Latitude,Longitude,Magnitude,Info");
         for(QuakeEntry qe : list){
@@ -79,6 +92,18 @@ public class EarthQuakeClient {
         }
     }
 
+    public void quakesOfDepth() {
+        EarthQuakeParser parser = new EarthQuakeParser();
+        String source = "data/nov20quakedatasmall.atom";
+        
+        ArrayList<QuakeEntry> list = parser.read(source);
+        
+        ArrayList<QuakeEntry> filterDepth = filterByDepth(list, -10000.0, -5000.0);
+        for(QuakeEntry qe : filterDepth) {
+            System.out.println(qe);
+        }
+    }
+    
     public void createCSV(){
         EarthQuakeParser parser = new EarthQuakeParser();
         String source = "data/nov20quakedatasmall.atom";
