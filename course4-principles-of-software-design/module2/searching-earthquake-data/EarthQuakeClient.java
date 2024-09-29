@@ -46,6 +46,24 @@ public class EarthQuakeClient {
         return answer;
     }
     
+    
+    public ArrayList<QuakeEntry> filterByPhrase(ArrayList<QuakeEntry> quakeData, String where, String phrase) {
+        ArrayList<QuakeEntry> answer = new ArrayList<QuakeEntry>();
+        for(QuakeEntry qe : quakeData) {
+            if(where.equals("start") && qe.getInfo().startsWith(phrase)) { 
+                answer.add(qe);
+            } else if(where.equals("end") && qe.getInfo().endsWith(phrase)) 
+            {
+                answer.add(qe);
+            } else if(where.equals("any") && (qe.getInfo().indexOf(phrase) != -1)) {
+                answer.add(qe);
+            }
+        }
+        
+        return answer;        
+    } 
+    
+    
     public void dumpCSV(ArrayList<QuakeEntry> list){
         System.out.println("Latitude,Longitude,Magnitude,Info");
         for(QuakeEntry qe : list){
@@ -100,6 +118,19 @@ public class EarthQuakeClient {
         
         ArrayList<QuakeEntry> filterDepth = filterByDepth(list, -10000.0, -5000.0);
         for(QuakeEntry qe : filterDepth) {
+            System.out.println(qe);
+        }
+    }
+    
+    
+    public void quakesByPhrase() {
+        EarthQuakeParser parser = new EarthQuakeParser();
+        String source = "data/nov20quakedatasmall.atom";
+        
+        ArrayList<QuakeEntry> list = parser.read(source);
+        
+        ArrayList<QuakeEntry> filterPhrase = filterByPhrase(list, "start", "Explosion");
+        for(QuakeEntry qe : filterPhrase) {
             System.out.println(qe);
         }
     }
