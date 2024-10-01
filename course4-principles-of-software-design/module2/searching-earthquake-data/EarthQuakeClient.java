@@ -112,27 +112,29 @@ public class EarthQuakeClient {
 
     public void quakesOfDepth() {
         EarthQuakeParser parser = new EarthQuakeParser();
-        String source = "data/nov20quakedatasmall.atom";
+        String source = "data/nov20quakedata.atom";
         
         ArrayList<QuakeEntry> list = parser.read(source);
         
-        ArrayList<QuakeEntry> filterDepth = filterByDepth(list, -10000.0, -5000.0);
+        ArrayList<QuakeEntry> filterDepth = filterByDepth(list, -10000.0, -8000.0);
         for(QuakeEntry qe : filterDepth) {
             System.out.println(qe);
         }
+        System.out.println(filterDepth.size() + "Size of filtered by depth");
     }
     
     
     public void quakesByPhrase() {
         EarthQuakeParser parser = new EarthQuakeParser();
-        String source = "data/nov20quakedatasmall.atom";
+        String source = "data/nov20quakedata.atom";
         
         ArrayList<QuakeEntry> list = parser.read(source);
         
-        ArrayList<QuakeEntry> filterPhrase = filterByPhrase(list, "start", "Explosion");
+        ArrayList<QuakeEntry> filterPhrase = filterByPhrase(list, "any", "Creek");
         for(QuakeEntry qe : filterPhrase) {
             System.out.println(qe);
         }
+        System.out.println(filterPhrase.size() + "Size of filtered by Pharse");
     }
     
     public void createCSV(){
