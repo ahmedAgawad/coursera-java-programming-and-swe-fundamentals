@@ -8,11 +8,15 @@
 public class PhraseFilter implements Filter {
     private String type;
     private String phrase;
+    private String filterName;
     
-    public PhraseFilter(String typeInput, String phraseInput) {
+    public PhraseFilter(String typeInput, String phraseInput, String name) {
         type = typeInput;
         phrase = phraseInput;
+        filterName = name;
     }
+    
+    
     
     
     public boolean satisfies(QuakeEntry qe) {
@@ -23,5 +27,10 @@ public class PhraseFilter implements Filter {
           return false;        
         }
         
+    }
+    
+    
+    public String getName() {
+        return filterName;
     }
 }

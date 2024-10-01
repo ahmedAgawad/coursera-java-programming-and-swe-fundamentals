@@ -31,9 +31,9 @@ public class EarthQuakeClient2 {
         ArrayList<QuakeEntry> list2 = filter(list1, f2);*/
         
         Location toyko = new Location(35.42, 139.43);
-        Filter f1 = new DistanceFilter(toyko, 10000.0 * 1000.0);
+        Filter f1 = new DistanceFilter(toyko, 10000.0 * 1000.0, "distFilter");
         ArrayList<QuakeEntry> list1 = filter(list, f1);
-        Filter f2 = new PhraseFilter("end", "Japan");
+        Filter f2 = new PhraseFilter("end", "Japan", "phraseFilter");
         ArrayList<QuakeEntry> list2 = filter(list1, f2);
         
         
@@ -42,6 +42,48 @@ public class EarthQuakeClient2 {
         } 
     }
 
+    
+    public void testMatchAllFilter() {
+        EarthQuakeParser parser = new EarthQuakeParser();
+        String source = "data/nov20quakedatasmall.atom";
+        ArrayList<QuakeEntry> list = parser.read(source);
+        System.out.println(list.size() + " no of read data");
+        
+        MatchAllFilter maf = new MatchAllFilter();
+        maf.addFilter(new MagnitudeFilter(0.0, 2.0, "MagFilter"));
+        maf.addFilter(new DepthFilter(-100000.0, -10000.0, "DepthFilter"));
+        maf.addFilter(new PhraseFilter("any", "a", "PhraseFilter"));
+        ArrayList<QuakeEntry> filteredList = filter(list , maf);
+        
+        String names = maf.getName();
+        
+        for(QuakeEntry qe : filteredList) {
+            System.out.println(qe);
+        }
+        
+        System.out.println(names);
+    }
+    
+    public void testMatchAllFilter2() {
+        EarthQuakeParser parser = new EarthQuakeParser();
+        String source = "data/nov20quakedatasmall.atom";
+        ArrayList<QuakeEntry> list = parser.read(source);
+        System.out.println(list.size() + " no of read data");
+        
+        Location oklahoma = new Location(36.1314, -95.9372);
+        
+        MatchAllFilter maf = new MatchAllFilter();
+        maf.addFilter(new MagnitudeFilter(0.0, 3.0, "MagFilter"));
+        maf.addFilter(new DistanceFilter(oklahoma, 10000.0 * 1000.0, "DistFilter"));
+        maf.addFilter(new PhraseFilter("any", "Ca", "PhraseFilter"));
+        ArrayList<QuakeEntry> filteredList = filter(list , maf);
+        
+        for(QuakeEntry qe : filteredList) {
+            System.out.println(qe);
+        }
+    }
+    
+    
     public void createCSV() {
         EarthQuakeParser parser = new EarthQuakeParser();
         //String source = "../data/nov20quakedata.atom";
