@@ -57,15 +57,55 @@ public class QuakeSortInPlace {
         }    
     }
     
+    
+    public void onePassBubbleSort(ArrayList<QuakeEntry> quakeData, int numSorted) {
+        int lastElementIndex = quakeData.size() - 1;
+        for(int i = 0; i < quakeData.size() - numSorted; i++) {
+            if(i != lastElementIndex) {
+                if(quakeData.get(i).getMagnitude() > quakeData.get(i + 1).getMagnitude()) {
+                    QuakeEntry quakeCurr = quakeData.get(i);
+                    QuakeEntry quakeNext = quakeData.get(i+1);
+                    quakeData.set(i, quakeNext);
+                    quakeData.set(i+1, quakeCurr);
+                }
+            }
+        }
+        
+    }
+    
+    
+    public void sortByMagnitudeWithBubbleSort(ArrayList<QuakeEntry> in) {
+        
+       
+        for(int i =0; i < in.size() - 1 ; i++ ) {
+            for(QuakeEntry qe : in) {
+            System.out.println(qe);
+            }
+            
+            System.out.println("\n");
+            
+            onePassBubbleSort(in, i);
+            
+            for(QuakeEntry qe : in) {
+            System.out.println(qe);
+            }
+            
+            System.out.println("\n");
+        }
+        
+    
+    }
+    
     public void testSort() {
         EarthQuakeParser parser = new EarthQuakeParser(); 
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
-        String source = "data/nov20quakedatasmall.atom";
+        String source = "data/earthquakeDataSampleSix2.atom";
         //String source = "data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);  
        
         System.out.println("read data for "+list.size()+" quakes");    
-        sortByLargestDepth(list);
+        //sortByLargestDepth(list);
+        sortByMagnitudeWithBubbleSort(list);
         for (QuakeEntry qe: list) { 
             System.out.println(qe);
         } 
