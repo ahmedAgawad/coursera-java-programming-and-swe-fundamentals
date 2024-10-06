@@ -5,20 +5,11 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MarkovFour implements IMarkovModel{
-    private String myText;
-    private Random myRandom;
+public class MarkovFour extends AbstractMarkovModel {
     
     public MarkovFour() {
         myRandom = new Random();
-    }
-    
-    public void setRandom(int seed){
-        myRandom = new Random(seed);
-    }
-    
-    public void setTraining(String s){
-        myText = s.trim();
+        order = 4;
     }
     
     public String getRandomText(int numChars) {
@@ -45,18 +36,6 @@ public class MarkovFour implements IMarkovModel{
     }
     
 
-    public ArrayList<String> getFollows(String key) {
-        ArrayList<String> followList = new ArrayList<String>();
-        
-        int index = myText.indexOf(key);
-        while(index != -1 && index + key.length() < myText.length()) {
-            followList.add(myText.substring(index + key.length(), index + key.length() + 1));
-            index = myText.indexOf(key, index+1);
-        }
-        
-        return followList;
-    }
-    
     
     
 }

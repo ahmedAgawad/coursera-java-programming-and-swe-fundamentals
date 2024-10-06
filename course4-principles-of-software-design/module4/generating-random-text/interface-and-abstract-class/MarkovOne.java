@@ -5,34 +5,13 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MarkovOne implements IMarkovModel{
-    private String myText;
-    private Random myRandom;
-    
+public class MarkovOne extends AbstractMarkovModel{    
     public MarkovOne() {
         myRandom = new Random();
-    }
-    
-    public void setRandom(int seed){
-        myRandom = new Random(seed);
-    }
-    
-    public void setTraining(String s){
-        myText = s.trim();
+        order = 1;
     }
     
 
-    public ArrayList<String> getFollows(String key) {
-        ArrayList<String> followList = new ArrayList<String>();
-        
-        int index = myText.indexOf(key);
-        while(index != -1 && index + key.length() < myText.length()) {
-            followList.add(myText.substring(index + key.length(), index + key.length() + 1));
-            index = myText.indexOf(key, index+1);
-        }
-        
-        return followList;
-    }
     
     public String getRandomText(int numChars) {
         StringBuilder sb = new StringBuilder();
