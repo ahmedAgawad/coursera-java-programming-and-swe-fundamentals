@@ -22,7 +22,7 @@ public class Tester {
         String test = fr.asString();
         MarkovOne mao = new MarkovOne();
         mao.setTraining(test);
-        ArrayList<String> follows = mao.getFollows("t");
+        ArrayList<String> follows = mao.getFollows("th");
         System.out.println(follows.size());
     }
 }
