@@ -127,17 +127,16 @@ public class QuakeSortInPlace {
     public void testSort() {
         EarthQuakeParser parser = new EarthQuakeParser(); 
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
-        String source = "data/earthQuakeDataDec6sample1.atom";
+        String source = "data/earthQuakeDataWeekDec6sample2.atom";
         //String source = "data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);  
        
         System.out.println("read data for "+list.size()+" quakes");    
         //sortByLargestDepth(list);
-        sortByMagnitudeWithBubbleSortWithCheck(list);
-        for (QuakeEntry qe: list) { 
-            System.out.println(qe);
-        } 
+        sortByMagnitudeWithCheck(list);
+        //sortByMagnitudeWithBubbleSortWithCheck(list);
         
+        // 4 2 5 9 8 1 / 2 4 5 8 1 9 / 2 4 5 1 8 9
     }
     
     public void createCSV() {
