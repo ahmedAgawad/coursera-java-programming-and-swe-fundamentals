@@ -7,7 +7,6 @@ import java.util.*;
  */
 public class MarkovOne extends AbstractMarkovModel{    
     public MarkovOne() {
-        myRandom = new Random();
         order = 1;
     }
     

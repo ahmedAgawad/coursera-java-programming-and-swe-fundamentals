@@ -8,7 +8,6 @@ import java.util.*;
 public class MarkovModel extends AbstractMarkovModel {
     private int n;
     public MarkovModel(int N) {
-        myRandom = new Random();
         n = N;
         order = N;
     }

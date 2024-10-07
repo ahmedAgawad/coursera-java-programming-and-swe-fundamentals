@@ -8,7 +8,6 @@ import java.util.*;
 public class MarkovFour extends AbstractMarkovModel {
     
     public MarkovFour() {
-        myRandom = new Random();
         order = 4;
     }
     

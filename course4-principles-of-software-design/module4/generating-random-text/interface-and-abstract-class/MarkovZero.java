@@ -11,7 +11,6 @@ import java.util.Random;
 public class MarkovZero extends AbstractMarkovModel {
     
     public MarkovZero() {
-        myRandom = new Random();
         order = 0;
     }
     

@@ -25,7 +25,9 @@ public abstract class AbstractMarkovModel implements IMarkovModel {
         myRandom = new Random(seed);
     }
     
-    
+    public  String toString() {
+        return "MarkovModel of order " + Integer.toString(order);
+    }
  
     abstract public String getRandomText(int numChars);
 
@@ -43,7 +45,5 @@ public abstract class AbstractMarkovModel implements IMarkovModel {
     }
     
     
-    public  String toString() {
-        return "MarkovModel of order " + Integer.toString(order);
-   }
+
 }
