@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class WordGram {
     private String[] myWords;
@@ -21,41 +22,46 @@ public class WordGram {
 
     public String toString(){
         String ret = "";
-        for(int i = 0; i < length(); i++) {
-            ret += (wordAt(i) + " ");
+        
+        for (int i = 0; i < myWords.length; i++) {
+            ret += myWords[i] + " ";
         }
 
         return ret.trim();
     }
-
+    
+    public WordGram shiftAdd(String word) {
+        String[] myWordsCopy = new String[myWords.length];
+        
+        for (int i = 0; i < this.length() - 1; i++) {
+            myWordsCopy[i] = this.wordAt(i + 1);
+        }
+        
+        myWordsCopy[this.length() - 1] = word; 
+        
+        WordGram out = new WordGram(myWordsCopy, 0, this.length());
+        
+        return out;
+    }
+    
     public boolean equals(Object o) {
         WordGram other = (WordGram) o;
-        if(length() != other.length()) {
+        
+        if (this.length() != other.length()) {
             return false;
         }
         
-        for(int i = 0; i < length(); i++) {
-            if(!(wordAt(i).equals(other.wordAt(i)))) {
+        for (int i = 0; i < this.length(); i++) {
+            if (!this.wordAt(i).equals(other.wordAt(i))) {
                 return false;
             }
         }
         
         return true;
     }
-
-    public WordGram shiftAdd(String word) {    
-        WordGram out = new WordGram(myWords, 0, myWords.length);
-        
-        // Shift the words in the array to the left by one position
-        for(int i = 0; i < out.myWords.length - 1; i++) {
-            out.myWords[i] = out.myWords[i + 1];
-        }
     
-        // Add the new word at the last position of the array
-        out.myWords[out.myWords.length - 1] = word;
-        out.toString();
-        return out;
-    
+    public int hashCode() {
+        myHash = this.toString().hashCode();
+        return myHash;
     }
-
 }
