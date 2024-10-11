@@ -9,7 +9,7 @@ import java.util.*;
 public class MovieRunnerAverage {
     public void printAverageRatings() {
         SecondRatings sr = new SecondRatings("data/ratedmovies_short.csv", "data/ratings_short.csv");
-        ArrayList<Rating> ratings = sr.getAverageRatings(3);
+        ArrayList<Rating> ratings = sr.getAverageRatings(2);
         Collections.sort(ratings);
         for(Rating rt : ratings) {
             System.out.println(rt.getValue() + " " + sr.getTitle(rt.getItem()));
@@ -19,7 +19,7 @@ public class MovieRunnerAverage {
     public void getAverageRatingOneMovie() {
         SecondRatings sr = new SecondRatings("data/ratedmovies_short.csv", "data/ratings_short.csv");
         ArrayList<Rating> ratings = sr.getAverageRatings(1);
-        String movieName = "The Godfather";
+        String movieName = "Vacation";
         String movieId = sr.getID(movieName);
         double movieRating = 0.0;
         for(Rating rt : ratings) {

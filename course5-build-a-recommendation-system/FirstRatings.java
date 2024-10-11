@@ -28,9 +28,9 @@ public class FirstRatings {
     }
     
     
-    public ArrayList<Rater> loadRaters(String fileName) {
+    public ArrayList<EfficientRater> loadRaters(String fileName) {
         FileResource fr = new FileResource(fileName);
-        ArrayList<Rater> raters = new ArrayList<Rater>();
+        ArrayList<EfficientRater> raters = new ArrayList<EfficientRater>();
         
         
         for(CSVRecord record : fr.getCSVParser()) {
@@ -38,11 +38,11 @@ public class FirstRatings {
             int indexOfCurrRater = indexOfRater(raters, currLineRaterId);
             
             if(indexOfCurrRater == -1) {
-                Rater newRater = new Rater(currLineRaterId);
+                EfficientRater newRater = new EfficientRater(currLineRaterId);
                 newRater.addRating(record.get("movie_id"), Double.parseDouble(record.get("rating")) );
                 raters.add(newRater);
             } else {
-                Rater oldRater = raters.get(indexOfCurrRater);
+                EfficientRater oldRater = raters.get(indexOfCurrRater);
                 oldRater.addRating(record.get("movie_id"), Double.parseDouble(record.get("rating")) );
                 raters.set(indexOfCurrRater, oldRater);
             }
@@ -54,7 +54,7 @@ public class FirstRatings {
         return raters;
     }
     
-    public int indexOfRater(ArrayList<Rater> raters,String idToSearchFor) {
+    public int indexOfRater(ArrayList<EfficientRater> raters,String idToSearchFor) {
         int index = -1;
         for(int i = 0; i < raters.size(); i++) {
             String currId = raters.get(i).getID();
@@ -122,7 +122,7 @@ public class FirstRatings {
     
     
     public void testLoadRaters() {
-        ArrayList<Rater> raters  = loadRaters("data/ratings.csv");
+        ArrayList<EfficientRater> raters  = loadRaters("data/ratings.csv");
         
         for(Rater rt : raters) {
             System.out.println("Rater ID : " + rt.getID() + " No of ratings given " + rt.numRatings());
